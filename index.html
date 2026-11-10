@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alex Carter | Personal Page</title>
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --panel: #ffffff;
+        --primary: #2f6fed;
+        --primary-dark: #1f4ec7;
+        --accent: #eaf1ff;
+        --text: #1c2430;
+        --muted: #5f6f86;
+        --border: #dfe7f5;
+        --shadow: 0 12px 28px rgba(31, 54, 97, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1100px, 90%);
+        margin: 0 auto;
+      }
+
+      header {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(223, 231, 245, 0.8);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+      }
+
+      .brand {
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: 0.04em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .hero {
+        padding: 88px 0 64px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .hero h1 {
+        margin: 0 0 16px;
+        font-size: clamp(2.4rem, 4vw, 4.2rem);
+        line-height: 1.1;
+      }
+
+      .highlight {
+        color: var(--primary);
+      }
+
+      .subtitle {
+        color: var(--muted);
+        font-size: 1.1rem;
+        max-width: 620px;
+        margin-bottom: 1.6rem;
+      }
+
+      .actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.9rem 1.5rem;
+        border-radius: 999px;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+        box-shadow: var(--shadow);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      .btn-secondary {
+        background: var(--accent);
+        color: var(--primary-dark);
+      }
+
+      .mini-stats {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        color: var(--muted);
+      }
+
+      .mini-stats strong {
+        display: block;
+        color: var(--text);
+        font-size: 1.3rem;
+      }
+
+      .profile-card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        padding: 1.4rem;
+      }
+
+      .avatar {
+        width: 100%;
+        height: 420px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #dfefff, #b9caf8 40%, #f3d9ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 7rem;
+        color: var(--primary-dark);
+      }
+
+      .card-details {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 1rem;
+        gap: 1rem;
+        color: var(--muted);
+      }
+
+      .card-details strong {
+        display: block;
+        color: var(--text);
+      }
+
+      main section {
+        padding: 30px 0 10px;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        margin-bottom: 1rem;
+      }
+
+      .about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .about-box,
+      .card,
+      .contact-box {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 1.6rem;
+        box-shadow: 0 10px 24px rgba(16, 28, 51, 0.05);
+      }
+
+      .about-box p {
+        color: var(--muted);
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.2rem;
+      }
+
+      .card h3 {
+        margin-top: 0;
+      }
+
+      .chip-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 1rem;
+      }
+
+      .chip {
+        background: #edf3ff;
+        border: 1px solid #d5e1ff;
+        color: var(--primary-dark);
+        padding: 0.5rem 0.8rem;
+        border-radius: 999px;
+        font-size: 0.88rem;
+        font-weight: 600;
+      }
+
+      .contact {
+        padding-bottom: 80px;
+      }
+
+      .contact-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .contact-box p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 32px 0 48px;
+      }
+
+      @media (max-width: 760px) {
+        .hero-grid,
+        .about,
+        .skills {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        .avatar {
+          height: 280px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="brand">ALEX CARTER</div>
+          <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>
+            Hello, I’m <span class="highlight">Alex</span><br />
+            a creative developer.
+          </h1>
+          <p class="subtitle">
+            I design and build thoughtful digital experiences that blend clean design,
+            strong functionality, and meaningful user value.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#contact">Let’s Connect</a>
+            <a class="btn btn-secondary" href="#about">View Profile</a>
+          </div>
+          <div class="mini-stats">
+            <div>
+              <strong>5+</strong>
+              Years Experience
+            </div>
+            <div>
+              <strong>24</strong>
+              Projects Delivered
+            </div>
+            <div>
+              <strong>8</strong>
+              Awards & Features
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="avatar">A</div>
+          <div class="card-details">
+            <div>
+              <strong>Based In</strong>
+              Toronto, Canada
+            </div>
+            <div>
+              <strong>Role</strong>
+              Web Developer
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section id="about">
+        <div class="container about">
+          <div class="about-box">
+            <h2 class="section-title">About Me</h2>
+            <p>
+              I’m a passionate web developer who enjoys turning ideas into polished,
+              user-friendly experiences. My work focuses on building responsive interfaces,
+              improving product usability, and creating digital solutions that feel smooth and modern.
+            </p>
+            <p>
+              I love collaborating with teams, learning new tools, and constantly refining the way
+              products connect with people.
+            </p>
+          </div>
+
+          <div class="about-box">
+            <h2 class="section-title">My Approach</h2>
+            <p>
+              Every project begins with understanding the audience and the problem to solve.
+              From there, I focus on simple design systems, efficient workflows, and thoughtful implementation.
+            </p>
+            <div class="chip-list">
+              <span class="chip">UI/UX</span>
+              <span class="chip">Web Design</span>
+              <span class="chip">Frontend</span>
+              <span class="chip">Branding</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="container">
+          <h2 class="section-title">Skills</h2>
+          <div class="skills">
+            <div class="card">
+              <h3>Design</h3>
+              <p>Wireframing, responsive design, interface systems, and visual storytelling.</p>
+            </div>
+            <div class="card">
+              <h3>Development</h3>
+              <p>HTML, CSS, JavaScript, and modern front-end practices for fast, accessible experiences.</p>
+            </div>
+            <div class="card">
+              <h3>Strategy</h3>
+              <p>Product thinking, user research, and thoughtful communication across teams.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <div class="contact-box">
+            <div>
+              <h2 class="section-title" style="margin-bottom: 0.3rem;">Let’s Work Together</h2>
+              <p>Email: alex@example.com</p>
+            </div>
+            <a class="btn btn-primary" href="mailto:alex@example.com">Contact Me</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Alex Carter. All rights reserved.
+    </footer>
+  </body>
+</html>
